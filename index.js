@@ -1,5 +1,8 @@
 // global variables
 const fs = require('fs');
+const binDir = './bin';
+
+// let dataStr;
 
 // global functions
 function READ_JSON(fileName) {
@@ -7,8 +10,15 @@ function READ_JSON(fileName) {
 		if (err) {
 			console.log('File read failed:', err);
 			return;
+		} else {
+			try {
+				// json file contents
+				const data = JSON.parse(jsonString);
+				console.log(data);
+			} catch (err) {
+				console.log('JSON parsing error', err);
+			}
 		}
-		console.log('File data:', jsonString);
 	});
 }
 
@@ -26,5 +36,14 @@ function WRITE_JSON(fileName, obj) {
 	);
 }
 
+function FILE_COUNT() {
+	fs.readdir(binDir, (err, files) => {
+		console.log('Number of Files:', files.length);
+	});
+}
+
 // execution
-console.log(readJsonFile('1'));
+READ_JSON('1');
+FILE_COUNT();
+// console.log(dataStr);
+
