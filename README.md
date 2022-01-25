@@ -1,6 +1,6 @@
 # NFT Metadata bridge
 
-### converts Hashlips metadata format to `KurtAtWork-OpenSea-Automatic-Uploader version-1.0.0` format.
+### converts Hashlips metadata format to `KurtAtWork-OpenSea-Automatic-Uploader version-1.0.0` metadata format.
 
 - Made with javascript and nodeJS
 
