@@ -1,0 +1,46 @@
+{
+	"nft": [
+		{
+			"file_path": "D:/VSCODE LOCAL FILES/hashlips_art_engine/build/images",
+			"nft_name": "Crypto Ducks #21",
+			"external_link": "",
+			"description": "Because of the duck revolution led by daffy, they adapted to the world and get along with humans in harmony and peace but only 500 ducks have evolved.",
+			"collection": "Weird Crypto Ducks",
+			"properties": [
+				{
+					"type": "bg",
+					"name": "'Coolest Background Image Ever'"
+				},
+				{
+					"type": "body",
+					"name": "skintone"
+				},
+				{
+					"type": "eyes",
+					"name": "hihi"
+				},
+				{
+					"type": "hat",
+					"name": "plant"
+				},
+				{
+					"type": "mouth",
+					"name": "mouth"
+				},
+				{
+					"type": "neck",
+					"name": "btc"
+				}
+			],
+			"unlockable_content": false,
+			"explicit_and_sensitive_content": false,
+			"supply": 1,
+			"blockchain": "Polygon",
+			"sale_type": "Fixed Price",
+			"price": 0.0155,
+			"duration": "6 months",
+			"specific_buyer": false,
+			"quantity": 1
+		}
+	]
+}
