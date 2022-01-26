@@ -1,24 +1,24 @@
 {
   "file_path": "D:/VSCODE LOCAL FILES/hashlips_art_engine/build/images",
-  "name": "Crypto Ducks #1",
+  "name": "Crypto Ducks #3",
   "description": "Because of the duck revolution led by daffy, they adapted to the world and get along with humans in harmony and peace but only 500 ducks have evolved.",
-  "image": "ipfs://NewUriToReplace/1.png",
+  "image": "ipfs://NewUriToReplace/3.png",
   "collection": "Weird Crypto Ducks",
-  "dna": "f198442e86b0c496273ae546af3147cf5dbad30e",
-  "edition": 1,
-  "date": 1642485432506,
+  "dna": "ce541d9e937f1fce16629981cb4fcbd14e23b979",
+  "edition": 3,
+  "date": 1642485432838,
   "attributes": [
     {
       "type": "bg",
-      "value": "light violet"
+      "value": "peach"
     },
     {
       "type": "body",
-      "value": "yellowe"
+      "value": "green"
     },
     {
       "type": "eyes",
-      "value": "UwU"
+      "value": "x"
     },
     {
       "type": "hat",
@@ -26,11 +26,11 @@
     },
     {
       "type": "mouth",
-      "value": "mouth"
+      "value": "toothpick"
     },
     {
       "type": "neck",
-      "value": "supreme"
+      "value": "id"
     }
   ],
   "unlockable_content": false,

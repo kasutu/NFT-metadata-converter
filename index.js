@@ -1,49 +1,87 @@
-// global variables
+// init
 const fs = require('fs');
+const fsp = require('fs').promises;
+
+// directories
 const binDir = './bin';
 
-// let dataStr;
+// global variables
+let fileCount;
+let progress;
+let tempMetadata;
+const metadataArr = [];
+const errorArr = [];
 
 // global functions
-function READ_JSON(fileName) {
-	fs.readFile(`./bin/${fileName}.json`, 'utf-8', (err, jsonString) => {
-		if (err) {
-			console.log('File read failed:', err);
-			return;
-		} else {
-			try {
-				// json file contents
-				const data = JSON.parse(jsonString);
-				console.log(data);
-			} catch (err) {
-				console.log('JSON parsing error', err);
-			}
-		}
-	});
+function print(str) {
+	console.log('-------------------------------------------------------------');
+	console.log('>', str);
+	console.log('-------------------------------------------------------------');
 }
 
-function WRITE_JSON(fileName, obj) {
-	fs.writeFile(
-		`./output/${fileName}.json`,
-		JSON.stringify(obj, null, 2),
-		(err) => {
-			if (err) {
-				console.log(err);
-			} else {
-				console.log('File successfully written!');
-			}
-		}
-	);
+function printErr(error) {
+	console.log('#############################################################');
+	console.log('!', error);
+	console.log('#############################################################');
 }
 
-function FILE_COUNT() {
+// init file count
+print('INITIALIZING...');
+let promise = new Promise(function (resolve, reject) {
+	// check for errors
 	fs.readdir(binDir, (err, files) => {
-		console.log('Number of Files:', files.length);
+		if (err) {
+			reject();
+			errorArr.push(err);
+		} else {
+			resolve();
+			fileCount = files.length;
+		}
 	});
+});
+
+// test the promise
+promise
+	.then(function () {
+		// do stuff here
+		print([`Files inside ${binDir}:`, fileCount]);
+		print('LOADING DATA...');
+		loadData();
+	})
+	.catch(function () {
+		// init failed
+		printErr(['Not a local directory', errorArr]);
+	});
+
+// read all data in files
+function loadData() {
+	// read files
+	for (let i = 0; i <= fileCount; i++) {
+		if (i > 0) {
+			fsp.readFile(`${binDir}/${i}.json`, 'utf-8').then((jsonString) => {
+				// check and save data
+				const data = JSON.parse(jsonString);
+				// print([`loading file: ${i}.json`, data.name]);
+				metadataArr.push(data);
+				progress = i;
+				if (progress === fileCount) {
+					// execute function
+					print('DONE LOADING DATA...');
+					retrieveData();
+				}
+			});
+		}
+	}
 }
 
-// execution
-READ_JSON('1');
-FILE_COUNT();
-// console.log(dataStr);
+function retrieveData() {
+	print(['Data loaded:', metadataArr.length]);
+	tempMetadata = {};
+}
 
+function writeMetadata() {
+	// do stuff
+	const jsonString = JSON.stringify(customer);
+	console.log(jsonString);
+	// => "{"name":"Newbie Co.","address":"Po Box City","order_count":0}"
+}
