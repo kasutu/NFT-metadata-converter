@@ -1,87 +1,103 @@
 // init
 const fs = require('fs');
 const fsp = require('fs').promises;
+const util = require('util');
+
+// Convert callback based methods to promise
+// based methods
+const readdirp = util.promisify(fs.readdir);
 
 // directories
 const binDir = './bin';
 
 // global variables
-let fileCount;
-let progress;
-let tempMetadata;
 const metadataArr = [];
 const errorArr = [];
 
 // global functions
-function print(str) {
+function print(log) {
+	// logs in console
 	console.log('-------------------------------------------------------------');
-	console.log('>', str);
-	console.log('-------------------------------------------------------------');
+	console.log({ log });
+	// console.log('-------------------------------------------------------------');
 }
 
 function printErr(error) {
+	// error log handler
 	console.log('#############################################################');
-	console.log('!', error);
-	console.log('#############################################################');
+	console.log({ error });
+	// console.log('#############################################################');
 }
 
-// init file count
-print('INITIALIZING...');
-let promise = new Promise(function (resolve, reject) {
-	// check for errors
-	fs.readdir(binDir, (err, files) => {
-		if (err) {
-			reject();
-			errorArr.push(err);
-		} else {
-			resolve();
-			fileCount = files.length;
-		}
-	});
-});
+async function countFiles(dir) {
+	// working total file counter
+	return new Promise((resolve, reject) =>
+		fs.readdir(dir, (err, files) =>
+			err ? reject(printErr(err)) : resolve(files.length)
+		)
+	);
+}
 
-// test the promise
-promise
-	.then(function () {
-		// do stuff here
-		print([`Files inside ${binDir}:`, fileCount]);
-		print('LOADING DATA...');
-		loadData();
-	})
-	.catch(function () {
-		// init failed
-		printErr(['Not a local directory', errorArr]);
-	});
+async function checkFolder(dir) {
+	// working total file counter
+	return new Promise((resolve, reject) =>
+		fs.readdir(dir, (err, files) =>
+			err ? reject(printErr(err)) : resolve(files)
+		)
+	);
+}
 
-// read all data in files
-function loadData() {
-	// read files
-	for (let i = 0; i <= fileCount; i++) {
-		if (i > 0) {
-			fsp.readFile(`${binDir}/${i}.json`, 'utf-8').then((jsonString) => {
-				// check and save data
-				const data = JSON.parse(jsonString);
-				// print([`loading file: ${i}.json`, data.name]);
-				metadataArr.push(data);
-				progress = i;
-				if (progress === fileCount) {
-					// execute function
-					print('DONE LOADING DATA...');
-					retrieveData();
-				}
-			});
-		}
+async function makeSequence(length) {
+	// makes a code firing sequence
+	print('sequencing...');
+	const sequence = [];
+
+	// make an array of numbers 1 to length
+	for (let i = 0; i < length; i++) {
+		sequence.push(i + 1);
 	}
+
+	print('done sequencing...');
+	return sequence;
 }
 
-function retrieveData() {
-	print(['Data loaded:', metadataArr.length]);
-	tempMetadata = {};
+async function getResult(dir, id) {
+	return new Promise((resolve, reject) => {
+		// check and save data
+		fs.readFile(`${dir}/${id}.json`, 'utf-8', (err, jsonStr) => {
+			err
+				? reject(printErr(err))
+				: resolve(metadataArr.push(JSON.parse(jsonStr)));
+		});
+	});
 }
 
-function writeMetadata() {
-	// do stuff
-	const jsonString = JSON.stringify(customer);
-	console.log(jsonString);
-	// => "{"name":"Newbie Co.","address":"Po Box City","order_count":0}"
+async function grabData(arr, dir) {
+	// read files
+	arr.forEach((num) => {
+		console.log(num);
+		print(metadataArr.length);
+		getResult(dir, num);
+	});
 }
+
+const initialize = async () => {
+	// executes functions in order
+	print('INITIALIZING...');
+	const files = await checkFolder(binDir);
+	print(['files:', files]);
+
+	files.forEach((element) => {
+		console.log(element);
+	});
+	
+	const count = await countFiles(binDir);
+	print(['count:', count]);
+	const initSequence = await makeSequence(count);
+	print(initSequence);
+	await grabData(initSequence, binDir);
+	// print(metadataArr.length);
+};
+
+// ----------Init----------//
+initialize();
