@@ -1,45 +1,35 @@
 {
-  "file_path": "D:/VSCODE LOCAL FILES/hashlips_art_engine/build/images",
   "name": "Crypto Ducks #3",
   "description": "Because of the duck revolution led by daffy, they adapted to the world and get along with humans in harmony and peace but only 500 ducks have evolved.",
   "image": "ipfs://NewUriToReplace/3.png",
-  "collection": "Weird Crypto Ducks",
-  "dna": "ce541d9e937f1fce16629981cb4fcbd14e23b979",
+  "dna": "3b43ffa68cd93807ff8a5b5eb8eac90db96d40d4",
   "edition": 3,
-  "date": 1642485432838,
+  "date": 1643331733397,
   "attributes": [
     {
-      "type": "bg",
-      "value": "peach"
+      "trait_type": "bg",
+      "value": "light brown"
     },
     {
-      "type": "body",
+      "trait_type": "body",
       "value": "green"
     },
     {
-      "type": "eyes",
-      "value": "x"
+      "trait_type": "eyes",
+      "value": "angry"
     },
     {
-      "type": "hat",
-      "value": "army"
+      "trait_type": "hat",
+      "value": "boat"
     },
     {
-      "type": "mouth",
+      "trait_type": "mouth",
       "value": "toothpick"
     },
     {
-      "type": "neck",
-      "value": "id"
+      "trait_type": "neck",
+      "value": "sweater"
     }
   ],
-  "unlockable_content": false,
-  "explicit_and_sensitive_content": false,
-  "supply": 1,
-  "blockchain": "Polygon",
-  "sale_type": "Fixed Price",
-  "price": 0.0155,
-  "duration": "6 months",
-  "specific_buyer": false,
-  "quantity": 1
+  "compiler": "HashLips Art Engine"
 }
