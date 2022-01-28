@@ -14,6 +14,6 @@
 
 # To-do
 
-- :white_check_mark: make a checklist in github
-- :negative_squared_cross_mark: make a metadata template
-- :white_check_mark: read metadata from JSON
+:white_check_mark: make a checklist in github </br>
+:negative_squared_cross_mark: make a metadata template </br>
+:white_check_mark: read metadata from JSON </br>
