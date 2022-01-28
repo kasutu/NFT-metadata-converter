@@ -14,6 +14,10 @@
 
 # To-do
 
+<!-- :negative_squared_cross_mark: -->
+<!-- :white_check_mark: -->
+
 :white_check_mark: make a checklist in github </br>
-:negative_squared_cross_mark: make a metadata template </br>
+:white_check_mark: make a metadata template </br>
 :white_check_mark: read metadata from JSON </br>
+:negative_squared_cross_mark: Write file in a new formatted file</br>
