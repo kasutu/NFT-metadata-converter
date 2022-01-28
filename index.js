@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
 // init
+const basePath = process.cwd();
 import { readdir, readFile } from 'fs';
 import chalk from 'chalk';
-// import { meta } from './kasutu_modules/metaTemplates';
+import { kurtAtWork, addProperty } from './kasutu-modules/NFT-meta.js';
 
 // directories
 const binDir = './bin';
@@ -11,7 +12,6 @@ const outputDir = './output';
 
 // global variables
 const sleep = (ms = 1500) => new Promise((r) => setTimeout(r, ms));
-let startPace;
 const metadataArr = [];
 
 // global functions
@@ -101,6 +101,8 @@ const initialize = async () => {
 
 	report(`converted: ${metadataArr.length} files`);
 	print('DONE INIT...');
+
+	console.log(kurtAtWork('', '', '', '', ''));
 };
 
 // ----------Init----------//
