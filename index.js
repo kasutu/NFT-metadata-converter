@@ -47,7 +47,6 @@ async function countFiles(dir) {
 
 async function makeSequence(length) {
 	// makes a code firing sequence
-	print('sequencing...'.blue);
 	const sequence = [];
 
 	// make an array of numbers 1 to length
@@ -55,7 +54,6 @@ async function makeSequence(length) {
 		sequence.push(i + 1);
 	}
 
-	print('done sequencing...'.yellow);
 	return sequence;
 }
 
@@ -70,8 +68,6 @@ async function checkFolder(dir) {
 
 async function getData(dir, fileName) {
 	// grabs the data inside a json file
-	console.log(`grabbing data from: [  ${fileName}  ]`.blue);
-
 	return new Promise((resolve, reject) => {
 		// check and save data
 		fs.readFile(`${dir}/${fileName}`, 'utf-8', (err, jsonStr) => {
@@ -84,8 +80,8 @@ async function pushMeta(files, dir, arr) {
 	// read each files and push it to an array
 	for (const file of files) {
 		const meta = await getData(dir, file);
-		arr.push(meta.name);
-		console.log(`pushed: [  ${file}  ]`.yellow);
+		arr.push(meta);
+		logger(`pushed: [  ${file}  ]`);
 	}
 
 	report(`files converted: [ ${metadataArr.length} ]`);
