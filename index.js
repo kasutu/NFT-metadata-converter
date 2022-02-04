@@ -1,6 +1,7 @@
 // init
-const fs = require('fs');
-const colors = require('colors');
+const basePath = process.cwd();
+import { readdir, readFile, write } from 'fs';
+import chalk from 'chalk';
 
 // directories
 const binDir = './bin';
@@ -9,6 +10,7 @@ const outputDir = './output';
 // global variables
 let startPace;
 const metadataArr = [];
+const finalData = [];
 
 // global functions
 function print(log) {
@@ -50,8 +52,6 @@ async function makeSequence(length) {
 
 async function checkFolder(dir) {
 	// check folder for available files
-	print('checking folder for files...'.blue);
-
 	return new Promise((resolve, reject) =>
 		fs.readdir(dir, (err, files) =>
 			err ? reject(printErr(err)) : resolve(files)
@@ -78,22 +78,52 @@ async function pushMeta(files, dir, arr) {
 		arr.push(meta.name);
 		console.log(`pushed: [  ${file}  ]`.yellow);
 	}
+
+	report(`files converted: [ ${metadataArr.length} ]`);
 }
 
-const initialize = async () => {
-	// executes functions in order
-	print('INITIALIZING...'.yellow);
+async function writeMeta(array) {
+	await array.forEach((element) => {
+		let meta = {
+			file_path: 'pathh',
+			nft_name: element.name,
+			external_link: element.image,
+			description: element.description,
+			collection: 'nameee',
+			properties: [],
+			unlockable_content: false,
+			explicit_and_sensitive_content: false,
+			supply: 1,
+			blockchain: 'Polygon',
+			sale_type: 'Fixed Price',
+			price: 0.033,
+			duration: '6 months',
+			specific_buyer: false,
+			quantity: 1,
+		};
 
-	// checks folder for available files
-	const files = await checkFolder(binDir);
-	console.log('files:', files);
-	
-	// push all data to array
-	await pushMeta(files, binDir, metadataArr);
+		element.attributes.forEach((element) => {
+			meta.properties.push({
+				type: element.trait_type,
+				name: element.value,
+			});
+		});
 
-	print(metadataArr);
-	print('DONE INIT...'.yellow);
-};
+		finalData.push({ nft: [meta] });
+	});
+}
+
+async function retrieve(array) {
+	array.forEach((element) => {
+		console.log(element.nft[0].nft_name);
+	});
+}
 
 // ----------Init----------//
-initialize();
+// executes functions in order
+
+const files = await checkFolder(binDir); // checks folder for available files
+await pushMeta(files, binDir, metadataArr); // push all data to array
+await writeMeta(metadataArr);
+await retrieve(finalData);
+
