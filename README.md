@@ -14,6 +14,10 @@
 
 # To-do
 
-- [x] make a checklist in github
-- [ ] make a metadata template
-- [ ] read metadata from array
+<!-- :negative_squared_cross_mark: -->
+<!-- :white_check_mark: -->
+
+:white_check_mark: make a checklist in github </br>
+:white_check_mark: make a metadata template </br>
+:white_check_mark: read metadata from JSON </br>
+:negative_squared_cross_mark: Write file in a new formatted file</br>

@@ -5,6 +5,7 @@ const basePath = process.cwd();
 import fs from 'fs';
 import chalk from 'chalk';
 
+
 // directories
 const binDir = './bin';
 const outputDir = './output';
@@ -39,7 +40,7 @@ function report(log) {
 async function countFiles(dir) {
 	// working total file counter
 	return new Promise((resolve, reject) =>
-		fs.readdir(dir, (err, files) =>
+		readdir(dir, (err, files) =>
 			err ? reject(printErr(err)) : resolve(files.length)
 		)
 	);
@@ -53,16 +54,13 @@ async function makeSequence(length) {
 	for (let i = 0; i < length; i++) {
 		sequence.push(i + 1);
 	}
-
 	return sequence;
 }
 
 async function checkFolder(dir) {
 	// check folder for available files
 	return new Promise((resolve, reject) =>
-		fs.readdir(dir, (err, files) =>
-			err ? reject(printErr(err)) : resolve(files)
-		)
+		readdir(dir, (err, files) => (err ? reject(printErr(err)) : resolve(files)))
 	);
 }
 
@@ -70,7 +68,7 @@ async function getData(dir, fileName) {
 	// grabs the data inside a json file
 	return new Promise((resolve, reject) => {
 		// check and save data
-		fs.readFile(`${dir}/${fileName}`, 'utf-8', (err, jsonStr) => {
+		readFile(`${dir}/${fileName}`, 'utf-8', (err, jsonStr) => {
 			err ? reject(printErr(err)) : resolve(JSON.parse(jsonStr));
 		});
 	});
@@ -123,6 +121,7 @@ async function retrieve(array) {
 		console.log(element.nft[0].nft_name);
 	});
 }
+
 
 // ----------Init----------//
 // executes functions in order
