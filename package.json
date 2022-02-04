@@ -1,6 +1,25 @@
 {
-  "dependencies": {
-    "colors": "^1.4.0",
-    "pace": "^0.0.4"
-  }
+	"name": "metadata-converter",
+	"description": "- Made with javascript and nodeJS",
+	"version": "1.0.0",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/PZYCO20/NFT-metadata-converter.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/PZYCO20/NFT-metadata-converter/issues"
+	},
+	"homepage": "https://github.com/PZYCO20/NFT-metadata-converter#readme",
+	"dependencies": {
+		"chalk": "^5.0.0",
+		"fs": "^0.0.1-security"
+	}
 }

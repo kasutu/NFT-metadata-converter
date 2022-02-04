@@ -1,6 +1,8 @@
+#!/usr/bin/env node
+
 // init
 const basePath = process.cwd();
-import { readdir, readFile, write } from 'fs';
+import fs from 'fs';
 import chalk from 'chalk';
 
 // directories
@@ -8,23 +10,30 @@ const binDir = './bin';
 const outputDir = './output';
 
 // global variables
-let startPace;
+const sleep = (ms = 1500) => new Promise((r) => setTimeout(r, ms));
 const metadataArr = [];
 const finalData = [];
 
 // global functions
+
 function print(log) {
 	// logs in console
-	console.log('-------------------------------------------------------------');
-	console.log(log);
-	// console.log('-------------------------------------------------------------');
+	console.log('>>', chalk.bgBlue(log));
 }
 
 function printErr(error) {
 	// error log handler
-	console.log('#############################################################');
-	console.log({ error });
-	// console.log('#############################################################');
+	console.log('>>', chalk.red(error));
+}
+
+function logger(log) {
+	// logs in console
+	console.log('>>', chalk.bgGreen(log));
+}
+
+function report(log) {
+	// logs in console
+	console.log('>>', log);
 }
 
 async function countFiles(dir) {
@@ -126,4 +135,3 @@ const files = await checkFolder(binDir); // checks folder for available files
 await pushMeta(files, binDir, metadataArr); // push all data to array
 await writeMeta(metadataArr);
 await retrieve(finalData);
-
